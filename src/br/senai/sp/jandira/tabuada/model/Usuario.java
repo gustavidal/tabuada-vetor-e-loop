@@ -7,12 +7,13 @@ public class Usuario {
     int multiplicando;
     int multiplicadorInicial;
     int multiplicadorFinal;
+    int temporario;
     int resultado;
 
     public void obterInfomacoes(){
         Scanner leitor = new Scanner(System.in);
 
-        System.out.print("Informa de qual número será a tabuada: ");
+        System.out.print("Informe de qual número será a tabuada: ");
         multiplicando = leitor.nextInt();
 
         System.out.print("Informe qual será o número a qual iniciará a multiplicação: ");
@@ -21,8 +22,17 @@ public class Usuario {
         System.out.print("Informe qual será o número a qual terminará a multiplicação: ");
         multiplicadorFinal = leitor.nextInt();
 
-        System.out.println(multiplicando);
-        System.out.println(multiplicadorInicial);
-        System.out.println(multiplicadorFinal);
+        verificarMultiplicadores();
+    }
+
+    public void verificarMultiplicadores(){
+        if (multiplicadorInicial > multiplicadorFinal){
+            temporario = multiplicadorInicial;
+            multiplicadorInicial = multiplicadorFinal;
+            multiplicadorFinal = temporario;
+
+            System.out.println(multiplicadorInicial);
+            System.out.println(multiplicadorFinal);
+        }
     }
 }
