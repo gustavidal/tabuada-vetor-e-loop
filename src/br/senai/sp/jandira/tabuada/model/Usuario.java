@@ -7,8 +7,11 @@ public class Usuario {
     int multiplicando;
     int multiplicadorInicial;
     int multiplicadorFinal;
-    int temporario;
-    int resultado;
+    int apoio;
+    int tamanho;
+    int i;
+    int produto;
+    String[] tabuada;
 
     public void obterInfomacoes(){
         Scanner leitor = new Scanner(System.in);
@@ -22,17 +25,38 @@ public class Usuario {
         System.out.print("Informe qual será o número a qual terminará a multiplicação: ");
         multiplicadorFinal = leitor.nextInt();
 
-        verificarMultiplicadores();
+        calcularTabuada();
     }
 
-    public void verificarMultiplicadores(){
+    public void calcularTabuada(){
         if (multiplicadorInicial > multiplicadorFinal){
-            temporario = multiplicadorInicial;
+            apoio = multiplicadorInicial;
             multiplicadorInicial = multiplicadorFinal;
-            multiplicadorFinal = temporario;
+            multiplicadorFinal = apoio;
+        }
 
-            System.out.println(multiplicadorInicial);
-            System.out.println(multiplicadorFinal);
+        tamanho = multiplicadorFinal - multiplicadorInicial + 1;
+        tabuada = new String[tamanho];
+
+        i = 0;
+        while(i < tamanho){
+            produto = multiplicando * multiplicadorInicial;
+            tabuada[i] = multiplicando + " × " + multiplicadorInicial + " = " + produto;
+            multiplicadorInicial++;
+            i++;
+        }
+
+        exibirTabuada();
+    }
+
+    public void exibirTabuada(){
+        System.out.println("");
+        System.out.println("");
+        System.out.println("RESULTADOS DA TABUADA");
+        i = 0;
+        while(i < tamanho){
+            System.out.println(tabuada[i]);
+            i++; // i = i + 1
         }
     }
 }
