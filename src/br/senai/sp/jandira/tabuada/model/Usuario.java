@@ -7,9 +7,7 @@ public class Usuario {
     int multiplicando;
     int multiplicadorInicial;
     int multiplicadorFinal;
-    int apoio;
     int tamanho;
-    int i;
     int produto;
     String[] tabuada;
 
@@ -30,7 +28,7 @@ public class Usuario {
 
     public void calcularTabuada(){
         if (multiplicadorInicial > multiplicadorFinal){
-            apoio = multiplicadorInicial;
+            int apoio = multiplicadorInicial;
             multiplicadorInicial = multiplicadorFinal;
             multiplicadorFinal = apoio;
         }
@@ -38,14 +36,13 @@ public class Usuario {
         tamanho = multiplicadorFinal - multiplicadorInicial + 1;
         tabuada = new String[tamanho];
 
-        i = 0;
+        int i = 0;
         while(i < tamanho){
             produto = multiplicando * multiplicadorInicial;
             tabuada[i] = multiplicando + " × " + multiplicadorInicial + " = " + produto;
             multiplicadorInicial++;
             i++;
         }
-
         exibirTabuada();
     }
 
@@ -53,7 +50,7 @@ public class Usuario {
         System.out.println("");
         System.out.println("");
         System.out.println("RESULTADOS DA TABUADA");
-        i = 0;
+        int i = 0;
         while(i < tamanho){
             System.out.println(tabuada[i]);
             i++; // i = i + 1
