@@ -4,15 +4,20 @@ import br.senai.sp.jandira.tabuada.model.Usuario;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 public class TelaTabuada extends Application {
 
@@ -130,16 +135,36 @@ public class TelaTabuada extends Application {
                     Integer.parseInt(tfMaiorMultiplicador.getText());
 
             String[] resultado = tabuada.calcularTabuada();
+            listaTabuada.getItems().clear();
             listaTabuada.getItems().addAll(resultado);
+
+            //Gravar dados em arquivo .csv
+            Path arquivo = Path.of("c:\\Users\\25203686\\DS1T\\tabuada\\dados_tabuada.csv");
+
+            String dados = tfMultiplicando.getText() + "; " + tfMenorMultiplicador.getText() + "; " + tfMaiorMultiplicador.getText() + "; " + LocalDateTime.now() + "\n";
+
+            try{
+                Files.writeString(arquivo, dados, StandardOpenOption.APPEND);
+            } catch (IOException erro) {
+                System.out.println(erro.getMessage());
+            }
         });
 
         btLimpar.setOnAction(e -> {
             listaTabuada.getItems().clear();
-            tfMultiplicando.setText("");
-            tfMenorMultiplicador.setText("");
-            tfMaiorMultiplicador.setText("");
+            tfMultiplicando.clear();
+            tfMenorMultiplicador.clear();
+            tfMaiorMultiplicador.clear();
             tfMultiplicando.requestFocus();
         });
 
+        btSair.setOnAction(e -> {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION, "Sair da calculadora de tabuadas?", ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> resposta = alerta.showAndWait();
+
+            if (resposta.get() == ButtonType.YES){
+                System.exit(0);
+            }
+        });
     }
 }

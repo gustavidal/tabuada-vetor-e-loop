@@ -5,6 +5,6 @@ import javafx.application.Application;
 
 public class Tabuada {
     public static void main(String[] args) {
-        Application.launch(TelaTabuada.class);
+        Application.launch(TelaTabuada.class, args);
     }
 }
