@@ -4,11 +4,10 @@ import java.util.Scanner;
 
 public class Usuario {
 
-    int multiplicando;
-    int multiplicadorInicial;
-    int multiplicadorFinal;
+    public int multiplicando;
+    public int multiplicadorInicial;
+    public int multiplicadorFinal;
     int tamanho;
-    int produto;
     String[] tabuada;
 
     public void obterInfomacoes(){
@@ -26,9 +25,10 @@ public class Usuario {
         calcularTabuada();
     }
 
-    public void calcularTabuada(){
+    public String[] calcularTabuada(){
+        int apoio = 0;
         if (multiplicadorInicial > multiplicadorFinal){
-            int apoio = multiplicadorInicial;
+            apoio = multiplicadorInicial;
             multiplicadorInicial = multiplicadorFinal;
             multiplicadorFinal = apoio;
         }
@@ -38,18 +38,21 @@ public class Usuario {
 
         int i = 0;
         while(i < tamanho){
-            produto = multiplicando * multiplicadorInicial;
+            int produto = multiplicando * multiplicadorInicial;
             tabuada[i] = multiplicando + " × " + multiplicadorInicial + " = " + produto;
             multiplicadorInicial++;
             i++;
         }
-        exibirTabuada();
+
+        return tabuada;
+        // exibirTabuada();
     }
 
     public void exibirTabuada(){
         System.out.println("");
         System.out.println("");
         System.out.println("RESULTADOS DA TABUADA");
+
         int i = 0;
         while(i < tamanho){
             System.out.println(tabuada[i]);
