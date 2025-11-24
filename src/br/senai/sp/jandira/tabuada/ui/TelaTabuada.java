@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.tabuada.ui;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,36 +16,39 @@ public class TelaTabuada extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        //Definir tamanho da tela
+        //Tamanho da tela
         stage.setWidth(500);
         stage.setHeight(500);
         stage.setTitle("Tabuada");
 
-        //Criar o root - que é o componente de leiaute principal
+        //Criar o root - componente de layout principal
         VBox root = new VBox();
-        root.setStyle("-fx-background-color: #8ff7ff;");
+        root.setStyle("-fx-background-color: #1f0b0c;");
 
-        //Criamos a cena e colocamos dentro o root dentro dela
+        //Criação da cena e "linkamento" no root
         Scene scene = new Scene(root);
 
         //Criação do header da tela
         VBox header = new VBox();
-        header.setPrefHeight(100);
-        header.setStyle("-fx-background-color: #8fa5ff;");
+        header.setStyle("-fx-background-color: #1f0b0c;");
 
-        //colocar o conteúdo do header
-        Label lbltitulo = new Label("Tabuada");
-        lbltitulo.setStyle("-fx-text-fill: white;-fx-font-size: 20px;-fx-font-weight: bold;");
-
+        //Conteúdo do header
+        Label lblTitulo = new Label("Tabuada");
+        lblTitulo.setPadding(new Insets(8, 0, 0, 8));
+        lblTitulo.setStyle("-fx-text-fill: white; -fx-font-size: 30px; -fx-font-weight: bold;");
         Label lblSubtitulo = new Label("Crie um tipo de tabuada.");
+        lblSubtitulo.setPadding(new Insets(0, 0, 8, 8));
+        lblSubtitulo.setStyle("-fx-text-fill: white;");
 
-        //Colocar os labels dentro do header
-        header.getChildren().addAll(lbltitulo,lblSubtitulo);
+        //Colocando os labels dentro do header
+        header.getChildren().addAll(lblTitulo,lblSubtitulo);
 
-        //criar grid de formulario
+        //Criação do grid de formulário
         GridPane gridFormulario = new GridPane();
-        gridFormulario.setPrefHeight(100);
-        gridFormulario.setStyle("-fx-background-color: #2fff00;");
+        gridFormulario.setVgap(10);
+        gridFormulario.setHgap(10);
+        gridFormulario.setPadding(new Insets(8, 0, 8, 8));
+        gridFormulario.setStyle("-fx-background-color: #e7fccf;");
 
         //Colocando o conteúdo do gridFormulario
         Label lblMultiplicando = new Label("Multiplicando:");
@@ -54,7 +58,7 @@ public class TelaTabuada extends Application {
         Label lblMaiorMultiplicador = new Label("Maior Multiplicador:");
         TextField tfMaiorMultiplicador = new TextField();
 
-        //Colocar os componentes no grid
+        //Colocando os componentes no gridFormulario
         gridFormulario.add(lblMultiplicando,0,0);
         gridFormulario.add(tfMultiplicando,1,0);
         gridFormulario.add(lblMenorMultiplicador,0,1);
@@ -62,35 +66,31 @@ public class TelaTabuada extends Application {
         gridFormulario.add(lblMaiorMultiplicador,0,2);
         gridFormulario.add(tfMaiorMultiplicador,1,2);
 
-        //criar a caixa dos botões
+        //Criação da caixa dos botões
         HBox boxBotoes = new HBox();
         boxBotoes.setPrefHeight(100);
-        boxBotoes.setStyle("-fx-background-color: #ff1f1f;");
+        boxBotoes.setStyle("-fx-background-color: #d6c396;");
 
         //Colocando o conteúdo do boxBotoes
         Button btCalcular = new Button("Calcular");
         Button btLimpar = new Button("Limpar");
         Button btSair = new Button("Sair");
 
-        //Colar os componentes no botão
+        //Colocando os componentes no boxBotoes
         boxBotoes.getChildren().add(btCalcular);
         boxBotoes.getChildren().add(btLimpar);
         boxBotoes.getChildren().add(btSair);
 
-        //Criar a caixa de resultado
+        //Criação da caixa de resultado
         VBox boxResultados = new VBox();
         boxResultados.setPrefHeight(100);
-        boxResultados.setStyle("-fx-background-color: #fff200;");
+        boxResultados.setStyle("-fx-background-color: #b3544f;");
 
-        //colocando o conteúdo do boxResultado
+        //Colocando o conteúdo do boxResultado
         Label lblResultados = new Label("Resultados:");
         ListView listaTabuada = new ListView();
-        String[] exemplo = new String[2];
-        exemplo[0] = "para ver";
-        exemplo[1] = "se deu certo";
-        listaTabuada.getItems().addAll(exemplo);
 
-        //Colocar os componentes do boxResultados
+        //Colocando os componentes do boxResultados
         boxResultados.getChildren().add(lblResultados);
         boxResultados.getChildren().add(listaTabuada);
 
